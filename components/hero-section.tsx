@@ -54,7 +54,7 @@ export default function HeroSection() {
 
               <div className="flex flex-col gap-4 md:gap-8 pt-4 md:pt-6 md:flex-row">
                 <div className="space-y-1">
-                  <p className="text-xl md:text-2xl font-bold text-slate-900">GH₵800</p>
+                  <p className="text-xl md:text-2xl font-bold text-slate-900">GH₵700</p>
                   <p className="text-xs md:text-sm text-slate-500">Starting price</p>
                 </div>
                 <div className="space-y-1">

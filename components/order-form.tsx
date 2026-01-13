@@ -29,11 +29,11 @@ export default function OrderForm({ selectedUnits = 1, onUnitsChange }: OrderFor
 
   const calculatePrice = (unitCount: number) => {
     const prices = {
-      1: 800,
-      2: 1400,
-      3: 2000,
+      1: 700,
+      2: 1300,
+      3: 1900,
     }
-    return prices[unitCount] || 800
+    return prices[unitCount] || 700
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -254,7 +254,7 @@ export default function OrderForm({ selectedUnits = 1, onUnitsChange }: OrderFor
                 <div className="flex justify-between text-sm md:text-base text-slate-600">
                   <span>
                     {Number.parseInt(units)} unit{Number.parseInt(units) > 1 ? "s" : ""} × GH₵
-                    {Number.parseInt(units) === 1 ? "800" : Number.parseInt(units) === 2 ? "1400" : "2000"}
+                    {Number.parseInt(units) === 1 ? "700" : Number.parseInt(units) === 2 ? "1300" : "1900"}
                   </span>
                   <span>GH₵{price.toLocaleString()}</span>
                 </div>
