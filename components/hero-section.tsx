@@ -11,9 +11,9 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-screen bg-gradient-to-b from-slate-50 to-white pt-12 pb-12 md:pt-16 md:pb-20">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col gap-8 md:gap-12 items-center md:items-center min-h-[auto] md:min-h-[80vh]">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-center min-h-[auto] md:min-h-[80vh]">
           {/* Product Image - appears first on mobile */}
-          <div className="flex justify-center items-center w-full">
+          <div className="flex justify-center items-center w-full md:w-1/2">
             <div className="relative w-full max-w-sm aspect-square">
               <Image
                 src="/images/screenshot-2024-12-31-105644.png"
@@ -26,7 +26,7 @@ export default function HeroSection() {
           </div>
 
           {/* Text Content */}
-          <div className="flex flex-col justify-center w-full">
+          <div className="flex flex-col justify-center w-full md:w-1/2">
             <div className="space-y-4 md:space-y-6">
               <div className="space-y-2">
                 <p className="text-xs md:text-sm font-semibold text-blue-600 uppercase tracking-wider">
