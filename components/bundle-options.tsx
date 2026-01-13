@@ -31,8 +31,14 @@ const bundles = [
   },
 ]
 
-export default function BundleOptions() {
-  const scrollToOrder = () => {
+type BundleOptionsProps = {
+  selectedUnits?: number
+  onSelectUnits?: (units: number) => void
+}
+
+export default function BundleOptions({ selectedUnits, onSelectUnits }: BundleOptionsProps) {
+  const scrollToOrder = (units: number) => {
+    onSelectUnits?.(units)
     document.getElementById("order-form")?.scrollIntoView({ behavior: "smooth" })
   }
 
@@ -52,7 +58,7 @@ export default function BundleOptions() {
               key={bundle.units}
               className={`relative p-6 md:p-8 flex flex-col transition-all ${
                 bundle.highlighted ? "ring-2 ring-blue-600 shadow-xl md:scale-105" : ""
-              }`}
+              } ${selectedUnits === bundle.units ? "ring-2 ring-blue-600" : ""}`}
             >
               {bundle.highlighted && (
                 <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-600">Most Popular</Badge>
@@ -75,7 +81,7 @@ export default function BundleOptions() {
               </div>
 
               <Button
-                onClick={scrollToOrder}
+                onClick={() => scrollToOrder(bundle.units)}
                 className={`w-full h-10 md:h-11 text-sm md:text-base ${
                   bundle.highlighted
                     ? "bg-blue-600 hover:bg-blue-700 text-white"

@@ -2,14 +2,19 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
 import { Alert } from "@/components/ui/alert"
 
-export default function OrderForm() {
-  const [units, setUnits] = useState("1")
+type OrderFormProps = {
+  selectedUnits?: number
+  onUnitsChange?: (units: number) => void
+}
+
+export default function OrderForm({ selectedUnits = 1, onUnitsChange }: OrderFormProps) {
+  const [units, setUnits] = useState(selectedUnits.toString())
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState({ type: "", text: "" })
 
@@ -19,7 +24,7 @@ export default function OrderForm() {
     phone: "",
     whatsapp: "",
     address: "",
-    units: "1",
+    units: selectedUnits.toString(),
   })
 
   const calculatePrice = (unitCount: number) => {
@@ -39,8 +44,20 @@ export default function OrderForm() {
     }))
     if (name === "units") {
       setUnits(value)
+      const parsedUnits = Number.parseInt(value)
+      if (!Number.isNaN(parsedUnits)) {
+        onUnitsChange?.(parsedUnits)
+      }
     }
   }
+
+  useEffect(() => {
+    const nextUnits = selectedUnits.toString()
+    if (nextUnits !== units) {
+      setUnits(nextUnits)
+      setFormData((prev) => ({ ...prev, units: nextUnits }))
+    }
+  }, [selectedUnits, units])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -77,6 +94,7 @@ export default function OrderForm() {
         units: "1",
       })
       setUnits("1")
+      onUnitsChange?.(1)
     } catch (error) {
       setMessage({
         type: "error",
@@ -112,8 +130,10 @@ export default function OrderForm() {
                       key={unit}
                       type="button"
                       onClick={() => {
-                        setUnits(unit.toString())
-                        setFormData((prev) => ({ ...prev, units: unit.toString() }))
+                        const nextUnits = unit.toString()
+                        setUnits(nextUnits)
+                        setFormData((prev) => ({ ...prev, units: nextUnits }))
+                        onUnitsChange?.(unit)
                       }}
                       className={`py-2 md:py-3 px-3 md:px-4 rounded-lg font-semibold text-sm md:text-base transition-all ${
                         units === unit.toString()

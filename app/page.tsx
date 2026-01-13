@@ -1,8 +1,4 @@
-import HeroSection from "@/components/hero-section"
-import FeaturesSection from "@/components/features-section"
-import CustomerReviews from "@/components/customer-reviews"
-import BundleOptions from "@/components/bundle-options"
-import OrderForm from "@/components/order-form"
+import HomeContent from "@/components/home-content"
 
 export const metadata = {
   title: "Spin Scrubber - Fast & Effortless Cleaning | Free Delivery in Accra",
@@ -11,13 +7,5 @@ export const metadata = {
 }
 
 export default function Home() {
-  return (
-    <main className="w-full">
-      <HeroSection />
-      <FeaturesSection />
-      <CustomerReviews />
-      <BundleOptions />
-      <OrderForm />
-    </main>
-  )
+  return <HomeContent />
 }
